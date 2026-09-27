@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Souma Kanti Mukherjee — Cloud &amp; Security Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E0F;
+    --bg-raised:#11161A;
+    --text:#D7E2EA;
+    --text-dim:rgba(215,226,234,0.58);
+    --line:rgba(215,226,234,0.14);
+    --amber:#F2A93B;
+    --teal:#2FD1BE;
+    --paper:#F3F1EA;
+    --ink:#0A0E0F;
+    --safe-t:env(safe-area-inset-top,0px);
+    --safe-b:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:var(--safe-t);}
+  html,body{margin:0;padding:0;background:var(--bg);}
+  body{
+    font-family:'Kanit',sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    overflow-x:clip;
+    padding-top:var(--safe-t);
+    padding-bottom:var(--safe-b);
+  }
+  img,svg{max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+  .grad-text{
+    background:linear-gradient(180deg,#5A6570 0%, #AEE3D6 100%);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(47,209,190,0.18);}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s cubic-bezier(.25,.1,.25,1), transform .8s cubic-bezier(.25,.1,.25,1);}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  .reveal-x-l{opacity:0; transform:translateX(-40px); transition:opacity .9s ease, transform .9s ease;}
+  .reveal-x-l.is-visible{opacity:1; transform:translateX(0);}
+  .reveal-x-r{opacity:0; transform:translateX(40px); transition:opacity .9s ease, transform .9s ease;}
+  .reveal-x-r.is-visible{opacity:1; transform:translateX(0);}
+
+  /* ---------- NAV ---------- */
+  nav.topnav{
+    position:sticky; top:var(--safe-t); z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px clamp(20px,5vw,56px);
+    background:linear-gradient(to bottom, rgba(10,14,15,0.92), rgba(10,14,15,0));
+    backdrop-filter:blur(6px);
+  }
+  .brand{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:.95rem; letter-spacing:.04em; color:var(--text);}
+  .brand span{color:var(--teal);}
+  .navlinks{display:flex; gap:clamp(16px,3vw,34px); list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    font-size:.82rem; text-transform:uppercase; letter-spacing:.12em; color:var(--text-dim);
+    transition:color .2s ease;
+  }
+  .navlinks a:hover{color:var(--text);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
+    padding-top:6vh; overflow-x:clip; position:relative;
+  }
+  .hero-heading{
+    font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:.88;
+    font-size:clamp(2.8rem, 11.5vw, 8.2rem);
+    padding:0 clamp(20px,5vw,56px);
+    margin:2.2rem 0 0 0;
+  }
+  .hero-mid{
+    display:grid; grid-template-columns:1fr; gap:28px;
+    padding:2.4rem clamp(20px,5vw,56px) 0;
+  }
+  @media(min-width:900px){
+    .hero-mid{grid-template-columns: 1.1fr 0.9fr; align-items:center;}
+  }
+  .hero-tag{
+    color:var(--text-dim); font-weight:300; max-width:420px; line-height:1.5;
+    font-size:clamp(0.95rem,1.6vw,1.15rem);
+  }
+  .console{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:18px;
+    padding:22px 24px; max-width:440px; margin-left:auto;
+  }
+  .console-head{display:flex; align-items:center; gap:8px; margin-bottom:16px; font-family:'JetBrains Mono',monospace; font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.1em;}
+  .console-row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-top:1px solid var(--line);}
+  .console-row:first-of-type{border-top:none;}
+  .console-label{font-size:.9rem; color:var(--text-dim);}
+  .console-val{font-family:'JetBrains Mono',monospace; font-size:.95rem; color:var(--teal);}
+  .bar{height:4px; border-radius:2px; background:rgba(215,226,234,0.12); overflow:hidden; width:100px;}
+  .bar > span{display:block; height:100%; background:linear-gradient(90deg,var(--amber),var(--teal)); border-radius:2px; animation:fillbar 1.6s ease .4s both;}
+  @keyframes fillbar{from{width:0%} to{width:var(--w,90%)}}
+
+  .hero-bottom{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    padding:0 clamp(20px,5vw,56px) clamp(28px,5vh,56px);
+    flex-wrap:wrap;
+  }
+  .hero-loc{
+    font-family:'JetBrains Mono',monospace; font-size:.78rem; color:var(--text-dim);
+    text-transform:uppercase; letter-spacing:.1em;
+  }
+
+  .btn-contact{
+    display:inline-flex; align-items:center; gap:10px; border-radius:999px; cursor:pointer; border:none;
+    padding:14px 30px; font-family:'Kanit',sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:.12em;
+    font-size:.85rem; color:#0A0E0F;
+    background:linear-gradient(120deg,var(--amber) 0%, var(--teal) 100%);
+    box-shadow:0 4px 18px rgba(47,209,190,0.22);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-contact:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(47,209,190,0.32);}
+
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:8px; border-radius:999px; border:1.5px solid var(--line);
+    padding:12px 26px; font-weight:500; text-transform:uppercase; letter-spacing:.1em; font-size:.8rem; color:var(--text);
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .btn-ghost:hover{background:rgba(215,226,234,0.06); border-color:rgba(215,226,234,0.4);}
+  .magnet{will-change:transform;}
+
+  /* ---------- AVATAR BADGE ---------- */
+  .avatar-badge{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:50%; flex:none;
+    background:linear-gradient(135deg,var(--amber),var(--teal));
+    font-family:'JetBrains Mono',monospace; font-weight:600; font-size:.78rem; color:#0A0E0F;
+  }
+  .avatar-badge::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    border:1.5px solid var(--teal); animation:ping 2.6s cubic-bezier(.4,0,.3,1) infinite;
+  }
+  @keyframes ping{
+    0%{transform:scale(1); opacity:.65;}
+    75%,100%{transform:scale(1.9); opacity:0;}
+  }
+  .identity-chip{display:flex; align-items:center; gap:12px;}
+  .identity-chip .id-text{display:flex; flex-direction:column; gap:2px;}
+  .identity-chip .id-name{font-size:.88rem; font-weight:500; color:var(--text);}
+  .identity-chip .id-role{font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--text-dim); display:flex; align-items:center; gap:6px;}
+  nav .avatar-badge{width:34px; height:34px; font-size:.68rem;}
+
+  /* ---------- HERO CANVAS ---------- */
+  .hero{position:relative;}
+  #heroCanvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.55; pointer-events:none;}
+  .hero > *{position:relative; z-index:1;}
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:radial-gradient(rgba(215,226,234,0.9) 1px, transparent 1px);
+    background-size:24px 24px; opacity:.045;
+  }
+  .hero-watermark{
+    position:absolute; inset-inline:0; top:50%; transform:translateY(-52%);
+    display:flex; justify-content:center; pointer-events:none; user-select:none;
+    font-weight:900; text-transform:uppercase; letter-spacing:-0.03em; line-height:1; white-space:nowrap;
+    font-size:clamp(90px,27vw,440px); color:transparent;
+    background:radial-gradient(circle, rgba(215,226,234,0.16) 0%, rgba(215,226,234,0.015) 70%);
+    -webkit-background-clip:text; background-clip:text;
+  }
+
+  .stack-card{transition:border-color .3s ease, box-shadow .3s ease;}
+  .stack-card:hover{border-color:rgba(47,209,190,0.5); box-shadow:0 16px 46px rgba(47,209,190,0.14);}
+  .skill-item{transition:background .25s ease;}
+  .skill-item:hover{background:rgba(10,14,15,0.035);}
+  .skill-item:hover .skill-name{transform:translateX(6px);}
+  .skill-name{transition:transform .25s ease; display:inline-block;}
+
+  /* ---------- TOOLKIT CAROUSEL ---------- */
+  .toolkit{
+    position:relative; overflow:hidden; height:min(88vh,780px); min-height:520px;
+    transition:background-color 650ms cubic-bezier(0.4,0,0.2,1);
+    border-radius:44px 44px 0 0; margin-top:-6px;
+  }
+  .toolkit .grain{
+    position:absolute; inset:0; pointer-events:none; z-index:5; opacity:.25; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    background-size:200px 200px;
+  }
+  .toolkit-ghost{
+    position:absolute; inset-inline:0; top:8%; z-index:1; display:flex; justify-content:center;
+    font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:1; color:#fff; opacity:.9;
+    font-size:clamp(70px,20vw,260px); pointer-events:none; user-select:none; white-space:nowrap;
+  }
+  .toolkit-label{
+    position:absolute; top:24px; left:20px; z-index:10; color:#fff; opacity:.9;
+    font-family:'JetBrains Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.18em;
+  }
+  @media(min-width:640px){ .toolkit-label{left:32px;} }
+  .toolkit-stage{position:absolute; inset:0; z-index:3;}
+  .tk-item{
+    position:absolute; left:50%; bottom:14%; display:flex; flex-direction:column; align-items:center; gap:10px;
+    will-change:transform,filter,opacity;
+    transition:transform 650ms cubic-bezier(0.4,0,0.2,1), filter 650ms cubic-bezier(0.4,0,0.2,1), opacity 650ms cubic-bezier(0.4,0,0.2,1), left 650ms cubic-bezier(0.4,0,0.2,1), bottom 650ms cubic-bezier(0.4,0,0.2,1), height 650ms cubic-bezier(0.4,0,0.2,1);
+  }
+  .tk-plaque{
+    width:min(30vw,190px); aspect-ratio:0.72/1; border-radius:26px; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 18px 40px rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.25);
+  }
+  .tk-plaque svg{width:52%; height:52%;}
+  .toolkit-caption{
+    position:absolute; z-index:10; bottom:22px; left:20px; max-width:320px; color:#fff;
+  }
+  @media(min-width:640px){ .toolkit-caption{bottom:64px; left:32px;} }
+  .tc-eyebrow{font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.16em; opacity:.8; margin:0 0 8px;}
+  .tc-name{font-weight:700; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(1.1rem,3vw,1.6rem); margin:0 0 4px; transition:opacity .3s ease;}
+  .tc-tools{font-family:'JetBrains Mono',monospace; font-size:.82rem; opacity:.85; margin:0 0 18px; transition:opacity .3s ease;}
+  .tc-nav{display:flex; gap:12px;}
+  .tc-btn{
+    width:52px; height:52px; border-radius:50%; border:2px solid #fff; background:transparent; color:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:transform 150ms ease, background-color 150ms ease;
+  }
+  .tc-btn:hover{transform:scale(1.08); background:rgba(255,255,255,0.14);}
+  .tc-btn svg{width:22px; height:22px;}
+  .toolkit-discover{
+    position:absolute; z-index:10; bottom:22px; right:20px; display:flex; align-items:center; gap:8px;
+    color:#fff; opacity:.9; font-weight:600; text-transform:uppercase; letter-spacing:-0.01em;
+    font-size:clamp(1rem,3vw,1.7rem); transition:opacity .2s ease;
+  }
+  .toolkit-discover:hover{opacity:1;}
+  .toolkit-discover svg{width:22px; height:22px;}
+  @media(min-width:640px){ .toolkit-discover{bottom:64px; right:40px;} }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-section{padding:clamp(48px,8vh,90px) 0 clamp(20px,4vh,50px); overflow:hidden;}
+  .marquee-row{display:flex; width:max-content; gap:14px; will-change:transform;}
+  .marquee-row.left{animation:scrollLeft 38s linear infinite;}
+  .marquee-row.right{animation:scrollRight 34s linear infinite; margin-top:14px;}
+  @keyframes scrollLeft{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes scrollRight{ from{transform:translateX(-50%)} to{transform:translateX(0)} }
+  .pill{
+    font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--text-dim);
+    border:1px solid var(--line); border-radius:999px; padding:10px 20px; white-space:nowrap;
+    background:var(--bg-raised);
+  }
+  .pill b{color:var(--text); font-weight:500;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; padding:clamp(70px,10vh,120px) clamp(20px,6vw,60px);
+  }
+  .corner-icon{position:absolute; opacity:.5; color:var(--text-dim);}
+  .about h2.section-heading{margin:0 0 2.4rem;}
+  #about-text{max-width:600px; font-weight:300; line-height:1.65; font-size:clamp(1rem,2vw,1.3rem); color:var(--text);}
+  #about-text span{transition:opacity .1s linear;}
+  .about .btn-contact{margin-top:3rem;}
+
+  .section-heading{
+    font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:.92;
+    font-size:clamp(2.6rem, 9vw, 6.5rem); text-align:center;
+  }
+
+  /* ---------- SKILLS (light) ---------- */
+  .skills{background:var(--paper); color:var(--ink); border-radius:44px 44px 0 0; padding:clamp(60px,10vh,110px) clamp(20px,6vw,60px);}
+  .skills h2.section-heading{color:var(--ink); -webkit-text-fill-color:var(--ink); background:none; margin-bottom:clamp(50px,8vh,90px);}
+  .skill-list{max-width:900px; margin:0 auto;}
+  .skill-item{
+    display:grid; grid-template-columns:72px 1fr; gap:20px; align-items:start;
+    padding:28px 0; border-top:1px solid rgba(10,14,15,0.14);
+  }
+  .skill-item:last-child{border-bottom:1px solid rgba(10,14,15,0.14);}
+  .skill-code{font-family:'JetBrains Mono',monospace; font-weight:600; font-size:.95rem; color:var(--teal); padding-top:6px;}
+  .skill-name{font-weight:500; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(1.05rem,2vw,1.35rem); margin-bottom:6px;}
+  .skill-desc{font-weight:300; line-height:1.55; opacity:.72; max-width:620px; font-size:clamp(.9rem,1.4vw,1.02rem);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience{padding:clamp(70px,10vh,120px) clamp(20px,6vw,60px);}
+  .exp-list{max-width:820px; margin:clamp(50px,7vh,80px) auto 0; position:relative;}
+  .exp-list::before{content:"";position:absolute; left:9px; top:8px; bottom:8px; width:1px; background:var(--line);}
+  .exp-item{position:relative; padding-left:44px; padding-bottom:clamp(36px,5vh,54px);}
+  .exp-item:last-child{padding-bottom:0;}
+  .exp-dot{position:absolute; left:0; top:6px; width:19px; height:19px; border-radius:50%; border:1.5px solid var(--teal); background:var(--bg); display:flex; align-items:center; justify-content:center;}
+  .exp-dot::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);}
+  .exp-date{font-family:'JetBrains Mono',monospace; font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; display:flex; align-items:center; gap:10px;}
+  .exp-current{font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--bg); background:linear-gradient(120deg,var(--amber),var(--teal)); border-radius:999px; padding:3px 10px; letter-spacing:.08em;}
+  .exp-role{font-weight:600; font-size:clamp(1.1rem,2.4vw,1.5rem); margin-bottom:2px;}
+  .exp-org{font-weight:300; color:var(--text-dim); margin-bottom:14px; font-size:1rem;}
+  .exp-bullets{margin:0; padding-left:18px; color:var(--text-dim); font-weight:300; line-height:1.6;}
+  .exp-bullets li{margin-bottom:6px;}
+
+  /* ---------- PROJECTS ---------- */
+  .projects{background:var(--bg); border-radius:44px 44px 0 0; margin-top:-30px; position:relative; z-index:2; padding:clamp(70px,10vh,120px) 0 clamp(60px,8vh,80px);}
+  .projects h2.section-heading{margin-bottom:clamp(46px,7vh,80px);}
+  .stack{max-width:920px; margin:0 auto; padding:0 clamp(20px,5vw,40px);}
+  .stack-card{
+    position:sticky; top:calc(90px + var(--safe-t));
+    background:var(--bg-raised); border:1.5px solid var(--line); border-radius:30px;
+    padding:clamp(24px,4vw,42px); margin-bottom:28px; transform-origin:top center;
+    will-change:transform;
+  }
+  .card-top{display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; justify-content:space-between; margin-bottom:22px;}
+  .card-tag{font-family:'JetBrains Mono',monospace; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); border:1px solid rgba(47,209,190,0.4); border-radius:999px; padding:5px 14px;}
+  .card-title{font-weight:600; font-size:clamp(1.25rem,3vw,1.8rem); flex:1 1 220px;}
+  .card-desc{font-weight:300; color:var(--text-dim); line-height:1.6; max-width:640px; font-size:clamp(.92rem,1.6vw,1.05rem); margin-bottom:20px;}
+  .card-stack-badges{display:flex; flex-wrap:wrap; gap:8px;}
+  .card-stack-badges span{font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--text-dim); border:1px solid var(--line); border-radius:999px; padding:5px 12px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  /* ---------- CREDENTIALS ---------- */
+  .credentials{padding:clamp(70px,10vh,120px) clamp(20px,6vw,60px) clamp(40px,6vh,60px);}
+  .credentials h2.section-heading{margin-bottom:clamp(46px,7vh,76px);}
+  .cred-grid{display:grid; grid-template-columns:1fr; gap:48px; max-width:900px; margin:0 auto;}
+  @media(min-width:760px){ .cred-grid{grid-template-columns:1fr 1fr; gap:64px;} }
+  .cred-col-label{font-family:'JetBrains Mono',monospace; font-size:.75rem; text-transform:uppercase; letter-spacing:.16em; color:var(--teal); margin-bottom:20px;}
+  .cred-item{border-top:1px solid var(--line); padding:18px 0;}
+  .cred-item:first-child{border-top:none; padding-top:0;}
+  .cred-degree{font-weight:600; font-size:clamp(.98rem,1.8vw,1.15rem); margin-bottom:3px;}
+  .cred-school{color:var(--text-dim); font-weight:300; font-size:.92rem; margin-bottom:4px;}
+  .cred-date{font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--text-dim); letter-spacing:.06em;}
+  .cred-cert{display:flex; align-items:flex-start; gap:10px; border-top:1px solid var(--line); padding:14px 0;}
+  .cred-cert:first-child{border-top:none; padding-top:0;}
+  .cred-cert svg{flex:none; width:18px; height:18px; margin-top:2px; color:var(--teal);}
+  .cred-cert-name{font-weight:500; font-size:.96rem;}
+  .cred-cert-issuer{color:var(--text-dim); font-weight:300; font-size:.82rem;}
+  .cred-languages{max-width:900px; margin:clamp(40px,6vh,60px) auto 0; padding-top:32px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:14px; justify-content:center;}
+  .cred-languages .cred-col-label{margin:0;}
+  .lang-pill{font-family:'JetBrains Mono',monospace; font-size:.8rem; color:var(--text-dim); border:1px solid var(--line); border-radius:999px; padding:6px 16px;}
+
+  .contact{padding:clamp(70px,10vh,120px) clamp(20px,6vw,60px) clamp(50px,7vh,80px); text-align:center;}
+  .contact h2.section-heading{margin-bottom:1.6rem;}
+  .contact-sub{color:var(--text-dim); font-weight:300; max-width:480px; margin:0 auto 2.6rem; line-height:1.6; font-size:clamp(.95rem,1.6vw,1.1rem);}
+  .contact-links{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:2.4rem;}
+  footer{padding:26px clamp(20px,6vw,60px); display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; border-top:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:.78rem; color:var(--text-dim);}
+
+  @media (max-width:720px){
+    .navlinks{gap:14px;}
+    .navlinks a{font-size:.7rem; letter-spacing:.08em;}
+    .console{margin-left:0;}
+    .stack-card{top:calc(70px + var(--safe-t));}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-row{animation:none !important;}
+    .reveal,.reveal-x-l,.reveal-x-r{transition:none !important; opacity:1 !important; transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="identity-chip">
+    <div class="avatar-badge magnet" id="navAvatar">SK</div>
+    <div class="brand">SOUMA<span>.</span>K.M</div>
+  </div>
+  <ul class="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-watermark" aria-hidden="true">UPTIME</div>
+  <h1 class="hero-heading grad-text reveal" id="heroHeading">Hi, i'm souma</h1>
+
+  <div class="hero-mid">
+    <div>
+      <p class="hero-tag reveal" id="heroTag">Cloud &amp; security engineer keeping identity, access, and infrastructure boring — in the good way.</p>
+      <div class="identity-chip reveal" style="margin-top:22px;">
+        <div class="avatar-badge magnet" id="heroAvatar">SK</div>
+        <div class="id-text">
+          <span class="id-name">Souma Kanti Mukherjee</span>
+          <span class="id-role"><span class="status-dot"></span> Open to work — immediate joiner</span>
+        </div>
+      </div>
+    </div>
+    <div class="console reveal-x-r" id="heroConsole">
+      <div class="console-head"><span class="status-dot"></span> Live status — resume snapshot</div>
+      <div class="console-row"><span class="console-label">Currently</span><span class="console-val">Amazon · Investigation Specialist</span></div>
+      <div class="console-row"><span class="console-label">Incident SLA compliance</span><span class="console-val">On target</span></div>
+      <div class="console-row"><span class="console-label">Open-source repos</span><span class="console-val">8 repos · 4★</span></div>
+      <div class="console-row"><span class="console-label">Currently learning</span><span class="console-val mono">Terraform · K8s</span></div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span class="hero-loc reveal">Kolkata, India — open to remote</span>
+    <a class="btn-contact reveal" href="mailto:soumamukherjee27@gmail.com">Get in touch</a>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<section class="marquee-section" id="marquee">
+  <div class="marquee-row left" id="marqueeRow1"></div>
+  <div class="marquee-row right" id="marqueeRow2"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <svg class="corner-icon reveal-x-l" style="top:6%; left:3%; width:70px;" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="8" y="6" width="32" height="10" rx="2"/><rect x="8" y="20" width="32" height="10" rx="2"/><rect x="8" y="34" width="32" height="8" rx="2"/>
+    <circle cx="14" cy="11" r="1.4" fill="currentColor" stroke="none"/><circle cx="14" cy="25" r="1.4" fill="currentColor" stroke="none"/>
+  </svg>
+  <svg class="corner-icon reveal-x-r" style="top:8%; right:3%; width:64px;" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M24 5 L40 12 V23 C40 33 33 40 24 43 C15 40 8 33 8 23 V12 Z"/><path d="M17 24 L22 29 L32 18" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <svg class="corner-icon reveal-x-l" style="bottom:8%; left:4%; width:60px;" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="6" y="9" width="36" height="26" rx="3"/><path d="M13 17 L19 22 L13 27" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 27 H33" stroke-linecap="round"/>
+  </svg>
+  <svg class="corner-icon reveal-x-r" style="bottom:6%; right:4%; width:66px;" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M6 34 A18 18 0 0 1 42 34" /><path d="M24 34 L32 22" stroke-linecap="round"/><circle cx="24" cy="34" r="2" fill="currentColor" stroke="none"/>
+  </svg>
+
+  <h2 class="section-heading grad-text reveal">About</h2>
+  <p id="about-text"></p>
+  <a class="btn-contact reveal" href="#projects">See the work</a>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <h2 class="section-heading reveal">Skills</h2>
+  <div class="skill-list" id="skillList"></div>
+</section>
+
+<!-- TOOLKIT CAROUSEL -->
+<section class="toolkit" id="toolkitCarousel">
+  <div class="grain"></div>
+  <div class="toolkit-ghost" id="toolkitGhost">STACK</div>
+  <div class="toolkit-label">TOOLKIT</div>
+  <div class="toolkit-stage" id="toolkitStage"></div>
+  <div class="toolkit-caption">
+    <p class="tc-eyebrow">CORE TOOLKIT</p>
+    <p class="tc-name" id="tcName"></p>
+    <p class="tc-tools" id="tcTools"></p>
+    <div class="tc-nav">
+      <button class="tc-btn" id="tcPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="tc-btn" id="tcNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <a class="toolkit-discover" href="#skills">
+    View all skills
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <h2 class="section-heading grad-text reveal">Experience</h2>
+  <div class="exp-list" id="expList"></div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <h2 class="section-heading grad-text reveal">Projects</h2>
+  <div class="stack" id="stack"></div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="credentials" id="credentials">
+  <h2 class="section-heading grad-text reveal">Credentials</h2>
+  <div class="cred-grid">
+    <div class="reveal">
+      <p class="cred-col-label">Education</p>
+      <div id="eduList"></div>
+    </div>
+    <div class="reveal">
+      <p class="cred-col-label">Certifications</p>
+      <div id="certList"></div>
+    </div>
+  </div>
+  <div class="cred-languages reveal">
+    <span class="cred-col-label">Languages</span>
+    <div id="langList" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="section-heading grad-text reveal">Let&apos;s talk</h2>
+  <p class="contact-sub reveal">Open to infrastructure, cloud, and security roles — immediate joiner, based in Kolkata, happy to work remote.</p>
+  <div class="contact-links reveal">
+    <a class="btn-contact" href="mailto:soumamukherjee27@gmail.com">soumamukherjee27@gmail.com</a>
+    <a class="btn-ghost" href="tel:+919547223504">+91 95472 23504</a>
+    <a class="btn-ghost" href="https://github.com/soumamukherjee27" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn-ghost" href="https://www.linkedin.com/in/souma-mukherjee/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> Souma Kanti Mukherjee</span>
+  <span>Kolkata, West Bengal, India</span>
+</footer>
+
+<script>
+(function(){
+  // ---- data ----
+  var skills = [
+    {code:'IAM', name:'Identity & Access Management', desc:'Okta administration, AWS IAM policy design, RBAC, access reviews, and provisioning across production environments.'},
+    {code:'SEC', name:'Security & Monitoring', desc:'Splunk and Datadog log analysis, CloudWatch alerting, incident response, and root cause analysis on P1–P3 events.'},
+    {code:'CLD', name:'Cloud Infrastructure', desc:'AWS EC2, S3, VPC, and CloudTrail day to day, with Terraform, Docker, and Kubernetes in active development.'},
+    {code:'AUTO', name:'Automation & Scripting', desc:'Python, PowerShell, and Bash scripts that turn recurring manual checks into jobs that run themselves.'},
+    {code:'OPS', name:'Incident & Ops Support', desc:'ServiceNow and Jira ticketing, SLA-bound troubleshooting, and cross-team escalation on live production issues.'}
+  ];
+
+  var experience = [
+    {date:'Dec 2025 — Present', current:true, role:'Investigation Specialist', org:'Amazon', bullets:[
+      'Analyze high-volume transaction and access logs daily to detect anomalies, fraud patterns, and policy violations.',
+      'Perform root cause analysis on flagged transactions and access events, feeding fraud-prevention workflows.',
+      'Partner cross-functionally to strengthen detection playbooks and keep investigation outcomes auditable.'
+    ]},
+    {date:'Jul 2024 — Dec 2024', role:'Cloud Operations Support', org:'Freelance', bullets:[
+      'Supported failover handling and production incident response to restore uptime and service continuity.',
+      'Designed and maintained AWS IAM policies, roles, and permission sets, enforcing least-privilege access.',
+      'Built Python and PowerShell automation for recurring operational tasks, cutting manual monitoring time.'
+    ]},
+    {date:'Oct 2023 — May 2024', role:'Technology Consultant', org:'NielsenIQ', bullets:[
+      'Resolved identity and access incidents in Okta, including provisioning, group fixes, and account recovery.',
+      'Diagnosed authentication and access failures, escalating to L2 teams to drive resolution within SLA.',
+      'Administered group-based access control aligned to RBAC, partnering with dev and DBA teams.'
+    ]},
+    {date:'Sep 2022 — Oct 2023', role:'IT Analyst', org:'Wipro', bullets:[
+      'Monitored security and system logs in Splunk to identify anomalies and potential security incidents.',
+      'Troubleshot Windows and macOS issues using Command Prompt, PowerShell, and shell tools.',
+      'Automated repetitive diagnostic tasks via PowerShell and CMD scripting to speed up resolution.'
+    ]}
+  ];
+
+  var projects = [
+    {tag:'Python · Automation', title:'Email Insight Pro Suite', desc:'Connects securely to an email inbox over IMAP and pulls sender, subject, and timestamp for recent messages straight to the command line — no email client required.', stack:['Python','IMAP','imap-tools'], link:'https://github.com/soumamukherjee27/email-insight-pro-suite'},
+    {tag:'Shell · Observability', title:'Cloud Monitoring with Datadog & AWS EC2', desc:'A hands-on setup guide and script for the Datadog agent on EC2 — metrics collection, log management, and alerting wired into AWS services for real observability.', stack:['Datadog','AWS EC2','Shell'], link:'https://github.com/soumamukherjee27/Cloud-Monitoring-with-Datadog-and-AWS-EC2'},
+    {tag:'GitHub · Open Source', title:'More on GitHub', desc:'8 repositories and counting — ongoing experiments, scripts, and works in progress, live in the open at github.com/soumamukherjee27.', stack:['github.com/soumamukherjee27'], link:'https://github.com/soumamukherjee27', linkLabel:'Visit profile ↗'}
+  ];
+
+  var marqueeTools = ['AWS EC2','AWS IAM','Okta','RBAC','Splunk','Datadog','CloudWatch','Linux','TCP/IP','DNS'];
+  var marqueeTools2 = ['Python','PowerShell','Bash','Terraform','Docker','Kubernetes','ServiceNow','Jira','RCA','SLA'];
+
+  var education = [
+    {degree:'B.Tech, Electrical Engineering', school:'Guru Nanak Institute of Technology, Kolkata', date:'Aug 2019 — Jul 2022'},
+    {degree:'Diploma, Electrical Engineering', school:'Guru Nanak Institute of Technology, Kolkata', date:'Aug 2016 — Jul 2019'}
+  ];
+  var certifications = [
+    {name:'Python', issuer:'Coursera'},
+    {name:'Site Reliability Engineering (SRE)', issuer:'LinkedIn Learning'},
+    {name:'Cloud Security', issuer:'LinkedIn Learning'},
+    {name:'AWS', issuer:'LinkedIn Learning'},
+    {name:'Cybersecurity', issuer:'LinkedIn Learning'},
+    {name:'Linux', issuer:'LinkedIn Learning'}
+  ];
+  var languages = ['English','Hindi','Bengali'];
+
+  // ---- render credentials ----
+  var eduList = document.getElementById('eduList');
+  education.forEach(function(e){
+    var item = document.createElement('div');
+    item.className = 'cred-item';
+    item.innerHTML = '<div class="cred-degree">'+e.degree+'</div><div class="cred-school">'+e.school+'</div><div class="cred-date">'+e.date+'</div>';
+    eduList.appendChild(item);
+  });
+  var certList = document.getElementById('certList');
+  certifications.forEach(function(c){
+    var item = document.createElement('div');
+    item.className = 'cred-cert';
+    item.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><div><div class="cred-cert-name">'+c.name+'</div><div class="cred-cert-issuer">'+c.issuer+'</div></div>';
+    certList.appendChild(item);
+  });
+  var langList = document.getElementById('langList');
+  languages.forEach(function(l){
+    var pill = document.createElement('span');
+    pill.className = 'lang-pill';
+    pill.textContent = l;
+    langList.appendChild(pill);
+  });
+
+  // ---- render skills ----
+  var skillList = document.getElementById('skillList');
+  skills.forEach(function(s){
+    var row = document.createElement('div');
+    row.className = 'skill-item reveal';
+    row.innerHTML = '<div class="skill-code">'+s.code+'</div><div><div class="skill-name">'+s.name+'</div><div class="skill-desc">'+s.desc+'</div></div>';
+    skillList.appendChild(row);
+  });
+
+  // ---- render experience ----
+  var expList = document.getElementById('expList');
+  experience.forEach(function(e){
+    var item = document.createElement('div');
+    item.className = 'exp-item reveal';
+    var lis = e.bullets.map(function(b){return '<li>'+b+'</li>';}).join('');
+    var badge = e.current ? ' <span class="exp-current">Current</span>' : '';
+    item.innerHTML = '<div class="exp-dot"></div><div class="exp-date">'+e.date+badge+'</div><div class="exp-role">'+e.role+'</div><div class="exp-org">'+e.org+'</div><ul class="exp-bullets">'+lis+'</ul>';
+    expList.appendChild(item);
+  });
+
+  // ---- render project stack ----
+  var stack = document.getElementById('stack');
+  projects.forEach(function(p, i){
+    var card = document.createElement('div');
+    card.className = 'stack-card';
+    card.style.zIndex = i + 1;
+    var badges = p.stack.map(function(s){return '<span>'+s+'</span>';}).join('');
+    var linkBtn = p.link ? '<a class="btn-ghost" href="'+p.link+'" target="_blank" rel="noopener" style="margin-top:18px; display:inline-flex;">'+(p.linkLabel||'View repo ↗')+'</a>' : '';
+    card.innerHTML = '<div class="card-top"><span class="card-tag">'+p.tag+'</span><span class="card-title">'+p.title+'</span></div><p class="card-desc">'+p.desc+'</p><div class="card-stack-badges">'+badges+'</div>'+linkBtn;
+    stack.appendChild(card);
+  });
+
+  // ---- animated about paragraph (word by word) ----
+  var aboutSentence = "Two years into cloud and security work, most of it has lived in the space between IAM policies and the page that comes in at 2am — provisioning access in Okta and AWS IAM, chasing anomalies through Splunk and Datadog, and writing the scripts that mean I don't do the boring part twice. Right now I'm deepening Terraform, Docker, and Kubernetes, working toward a dedicated cloud security role.";
+  var aboutEl = document.getElementById('about-text');
+  var words = aboutSentence.split(' ');
+  aboutEl.innerHTML = words.map(function(w){return '<span style="opacity:0.2">'+w+' </span>';}).join('');
+  var wordSpans = aboutEl.querySelectorAll('span');
+
+  function updateAboutText(){
+    var rect = aboutEl.getBoundingClientRect();
+    var start = window.innerHeight * 0.85;
+    var end = window.innerHeight * 0.25;
+    var progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
+    var n = wordSpans.length;
+    wordSpans.forEach(function(s, i){
+      var wp = Math.min(Math.max(progress * n - i, 0), 1);
+      s.style.opacity = 0.2 + wp * 0.8;
+    });
+  }
+
+  // ---- marquee ----
+  function buildRow(el, items){
+    var frag = document.createDocumentFragment();
+    for(var r=0; r<2; r++){
+      items.forEach(function(t){
+        var pill = document.createElement('span');
+        pill.className = 'pill';
+        pill.innerHTML = '<b>'+t+'</b>';
+        frag.appendChild(pill);
+      });
+    }
+    el.appendChild(frag);
+  }
+  buildRow(document.getElementById('marqueeRow1'), marqueeTools);
+  buildRow(document.getElementById('marqueeRow2'), marqueeTools2);
+
+  // ---- sticky card scale on scroll ----
+  var cards = document.querySelectorAll('.stack-card');
+  function updateStack(){
+    var total = cards.length;
+    cards.forEach(function(card, i){
+      var rect = card.getBoundingClientRect();
+      var start = window.innerHeight;
+      var progress = Math.min(Math.max((start - rect.top) / (window.innerHeight * 0.7), 0), 1);
+      var targetScale = 1 - (total - 1 - i) * 0.035;
+      var scale = 1 - (1 - targetScale) * progress;
+      card.style.transform = 'scale(' + scale + ')';
+    });
+  }
+
+  // ---- reveal on scroll ----
+  var revealEls = document.querySelectorAll('.reveal, .reveal-x-l, .reveal-x-r');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // hero elements reveal immediately on load
+  ['heroHeading','heroTag','heroConsole'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ requestAnimationFrame(function(){ setTimeout(function(){ el.classList.add('is-visible'); }, 80); }); }
+  });
+
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        updateAboutText();
+        updateStack();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- magnetic hover on CTAs / avatar badges ----
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function bindMagnet(el, strength, pad){
+    if(!el || reduceMotion) return;
+    strength = strength || 6; pad = pad || 40;
+    el.classList.add('magnet');
+    var active = false;
+    document.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect();
+      var cx = r.left + r.width/2, cy = r.top + r.height/2;
+      var dx = e.clientX - cx, dy = e.clientY - cy;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < r.width/2 + pad){
+        active = true;
+        el.style.transition = 'transform .3s ease-out';
+        el.style.transform = 'translate3d(' + (dx/strength) + 'px,' + (dy/strength) + 'px,0)';
+      } else if(active){
+        active = false;
+        el.style.transition = 'transform .6s ease-in-out';
+        el.style.transform = 'translate3d(0,0,0)';
+      }
+    }, {passive:true});
+  }
+  document.querySelectorAll('.btn-contact').forEach(function(b){ bindMagnet(b, 7, 30); });
+  bindMagnet(document.getElementById('heroAvatar'), 4, 26);
+  bindMagnet(document.getElementById('navAvatar'), 4, 20);
+
+  // ---- hero network-topology canvas ----
+  (function(){
+    var canvas = document.getElementById('heroCanvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.parentElement;
+    var nodes = [];
+    var w, h, dpr;
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = hero.offsetWidth; h = hero.offsetHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var count = Math.max(18, Math.min(46, Math.round((w*h) / 32000)));
+      nodes = [];
+      for(var i=0;i<count;i++){
+        nodes.push({
+          x: Math.random()*w, y: Math.random()*h,
+          vx: (Math.random()-0.5)*0.18, vy: (Math.random()-0.5)*0.18,
+          r: Math.random()*1.6 + 1
+        });
+      }
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > w) n.vx *= -1;
+        if(n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      var linkDist = Math.max(120, w/9);
+      for(var i=0;i<nodes.length;i++){
+        for(var j=i+1;j<nodes.length;j++){
+          var a = nodes[i], b = nodes[j];
+          var dx = a.x-b.x, dy = a.y-b.y;
+          var d = Math.sqrt(dx*dx+dy*dy);
+          if(d < linkDist){
+            ctx.strokeStyle = 'rgba(47,209,190,' + (0.14 * (1 - d/linkDist)) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+          }
+        }
+      }
+      for(var i=0;i<nodes.length;i++){
+        var n = nodes[i];
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(215,226,234,0.45)';
+        ctx.fill();
+      }
+    }
+
+    var raf;
+    function loop(){ step(); raf = requestAnimationFrame(loop); }
+
+    resize();
+    if(reduceMotion){
+      step();
+    } else {
+      loop();
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ cancelAnimationFrame(raf); } else { loop(); }
+      });
+    }
+    var resizeTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ resize(); if(reduceMotion) step(); }, 150);
+    });
+  })();
+
+  // ---- toolkit carousel ----
+  (function(){
+    var ICONS = {
+      key:'<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="32" r="11"/><path d="M31 32h27M50 32v9M42 32v6"/></svg>',
+      shield:'<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6l21 8v16c0 14-9 22-21 28-12-6-21-14-21-28V14z"/><path d="M22 32l7 7 13-15"/></svg>',
+      server:'<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="9" width="44" height="14" rx="3"/><rect x="10" y="27" width="44" height="14" rx="3"/><rect x="10" y="45" width="44" height="10" rx="3"/><circle cx="19" cy="16" r="1.8" fill="#fff" stroke="none"/><circle cx="19" cy="34" r="1.8" fill="#fff" stroke="none"/></svg>',
+      terminal:'<svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="48" height="40" rx="5"/><path d="M18 26l9 8-9 8M34 42h12"/></svg>'
+    };
+    var STACK = [
+      {name:'Identity & Access', tools:'Okta · AWS IAM · RBAC', bg:'#C98A2E', panel:'#E3A94E', icon:'key'},
+      {name:'Security & Monitoring', tools:'Splunk · Datadog · CloudWatch', bg:'#1F8C7E', panel:'#2FAE9C', icon:'shield'},
+      {name:'Cloud Infrastructure', tools:'AWS · Terraform · Docker · K8s', bg:'#3E6FA8', panel:'#5488C4', icon:'server'},
+      {name:'Automation', tools:'Python · Bash · PowerShell', bg:'#6E4F9E', panel:'#8C6DBB', icon:'terminal'}
+    ];
+
+    var section = document.getElementById('toolkitCarousel');
+    var stage = document.getElementById('toolkitStage');
+    var ghost = document.getElementById('toolkitGhost');
+    var tcName = document.getElementById('tcName');
+    var tcTools = document.getElementById('tcTools');
+    if(!section) return;
+
+    var activeIndex = 0, animating = false;
+    var isMobile = window.innerWidth < 640;
+    window.addEventListener('resize', function(){ isMobile = window.innerWidth < 640; layout(); });
+
+    var els = STACK.map(function(item, i){
+      var el = document.createElement('div');
+      el.className = 'tk-item';
+      el.innerHTML = '<div class="tk-plaque" style="background:'+item.panel+'">'+ICONS[item.icon]+'</div>';
+      stage.appendChild(el);
+      return el;
+    });
+
+    function roleFor(i){
+      var center = activeIndex, left = (activeIndex+3)%4, right = (activeIndex+1)%4, back = (activeIndex+2)%4;
+      if(i === center) return 'center';
+      if(i === left) return 'left';
+      if(i === right) return 'right';
+      return 'back';
+    }
+
+    function layout(){
+      section.style.backgroundColor = STACK[activeIndex].bg;
+      els.forEach(function(el, i){
+        var role = roleFor(i);
+        el.style.zIndex = role==='center'?20 : role==='left'||role==='right'?10 : 5;
+        if(role === 'center'){
+          el.style.left = '50%';
+          el.style.transform = 'translateX(-50%) scale(' + (isMobile?1.05:1.35) + ')';
+          el.style.filter = 'blur(0px)'; el.style.opacity = '1';
+          el.style.bottom = isMobile ? '20%' : '16%';
+        } else if(role === 'left'){
+          el.style.left = isMobile ? '20%' : '28%';
+          el.style.transform = 'translateX(-50%) scale(0.9)';
+          el.style.filter = 'blur(2px)'; el.style.opacity = '0.85';
+          el.style.bottom = isMobile ? '26%' : '18%';
+        } else if(role === 'right'){
+          el.style.left = isMobile ? '80%' : '72%';
+          el.style.transform = 'translateX(-50%) scale(0.9)';
+          el.style.filter = 'blur(2px)'; el.style.opacity = '0.85';
+          el.style.bottom = isMobile ? '26%' : '18%';
+        } else {
+          el.style.left = '50%';
+          el.style.transform = 'translateX(-50%) scale(0.78)';
+          el.style.filter = 'blur(4px)'; el.style.opacity = '0.55';
+          el.style.bottom = isMobile ? '26%' : '18%';
+        }
+      });
+      tcName.style.opacity = 0; tcTools.style.opacity = 0;
+      setTimeout(function(){
+        tcName.textContent = STACK[activeIndex].name;
+        tcTools.textContent = STACK[activeIndex].tools;
+        tcName.style.opacity = 1; tcTools.style.opacity = 1;
+      }, 180);
+    }
+
+    function navigate(dir){
+      if(animating) return;
+      animating = true;
+      activeIndex = dir === 'next' ? (activeIndex+1)%4 : (activeIndex+3)%4;
+      layout();
+      setTimeout(function(){ animating = false; }, 650);
+    }
+
+    document.getElementById('tcPrev').addEventListener('click', function(){ navigate('prev'); });
+    document.getElementById('tcNext').addEventListener('click', function(){ navigate('next'); });
+    bindMagnet(document.getElementById('tcPrev'), 8, 14);
+    bindMagnet(document.getElementById('tcNext'), 8, 14);
+
+    layout();
+  })();
+
+  // ---- scramble text effects ----
+  var SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  function randChar(){ return SCRAMBLE_CHARS[Math.floor(Math.random()*SCRAMBLE_CHARS.length)]; }
+
+  function scrambleIn(el, text, delayMs){
+    if(!el) return;
+    if(reduceMotion){ el.textContent = text; return; }
+    el.textContent = '\u00A0';
+    setTimeout(function(){
+      var frame = 0;
+      var timer = setInterval(function(){
+        frame++;
+        var revealed = Math.min(text.length, Math.floor(frame * 0.5));
+        var out = '';
+        for(var i=0;i<text.length;i++){
+          var ch = text[i];
+          if(ch === ' '){ out += ' '; continue; }
+          if(i < revealed){ out += ch; }
+          else if(i < revealed + 3){ out += randChar(); }
+          else { out += '\u00A0'; }
+        }
+        el.textContent = out;
+        if(revealed >= text.length){ clearInterval(timer); el.textContent = text; }
+      }, 25);
+    }, delayMs);
+  }
+
+  function bindScrambleHover(el){
+    if(!el || reduceMotion) return;
+    var original = el.textContent;
+    var timer = null;
+    el.addEventListener('mouseenter', function(){
+      clearInterval(timer);
+      var frame = 0;
+      timer = setInterval(function(){
+        frame++;
+        var revealCount = Math.floor(frame / 4);
+        var out = '';
+        for(var i=0;i<original.length;i++){
+          out += (original[i] === ' ') ? ' ' : (i < revealCount ? original[i] : randChar());
+        }
+        el.textContent = out;
+        if(revealCount >= original.length){ clearInterval(timer); el.textContent = original; }
+      }, 25);
+    });
+    el.addEventListener('mouseleave', function(){
+      clearInterval(timer);
+      el.textContent = original;
+    });
+  }
+
+  var heroHeadingEl = document.getElementById('heroHeading');
+  if(heroHeadingEl){ scrambleIn(heroHeadingEl, "Hi, i'm souma", 350); }
+
+  document.querySelectorAll('.navlinks a').forEach(function(a){ bindScrambleHover(a); });
+  var discoverLink = document.querySelector('.toolkit-discover');
+  if(discoverLink){
+    var discoverTextNode = discoverLink.childNodes[0];
+    var wrap = document.createElement('span');
+    wrap.textContent = discoverTextNode.textContent.trim();
+    discoverLink.replaceChild(wrap, discoverTextNode);
+    bindScrambleHover(wrap);
+  }
+  function wrapAndScramble(el){
+    if(!el) return;
+    var arrow = el.textContent.trim().endsWith('↗');
+    var base = arrow ? el.textContent.replace(' ↗','').trim() : el.textContent.trim();
+    el.textContent = '';
+    var wrap = document.createElement('span');
+    wrap.textContent = base;
+    el.appendChild(wrap);
+    if(arrow){ el.appendChild(document.createTextNode(' ↗')); }
+    bindScrambleHover(wrap);
+  }
+  document.querySelectorAll('.contact-links a.btn-ghost').forEach(wrapAndScramble);
+})();
+</script>
+</body>
+</html>
