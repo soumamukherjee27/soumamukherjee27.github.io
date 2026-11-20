@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Souma Kanti Mukherjee — Cloud &amp; Security Engineer</title>
-<meta name="description" content="Souma Kanti Mukherjee — cloud security and cloud support engineer. Security monitoring, IAM, Splunk, Datadog, AWS. Open to remote and hybrid roles.">
+<title>Souma Kanti Mukherjee — IT Operations, moving into Cloud &amp; Security</title>
+<meta name="description" content="Souma Kanti Mukherjee — IT operations and support professional (security monitoring, SaaS support, investigations) moving into cloud and security roles. AWS, Okta, Splunk, Datadog. Open to remote and hybrid.">
 <meta name="theme-color" content="#0A0E0F">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Souma Kanti Mukherjee — Cloud &amp; Security Engineer">
-<meta property="og:description" content="A year-plus on the defensive side: security monitoring, investigations, access control. Now building toward cloud security. See the work.">
+<meta property="og:title" content="Souma Kanti Mukherjee — IT Operations, moving into Cloud &amp; Security">
+<meta property="og:description" content="Nearly three years across security monitoring, SaaS product support, and investigations. Now building on AWS and moving into cloud and security roles.">
 <meta property="og:url" content="https://soumamukherjee27.github.io">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -415,6 +415,23 @@
     .navlinks a{white-space:nowrap;}
     .brand{display:none;}
   }
+
+  /* ---------- v4: tech stack legend + chips, journey carry line ---------- */
+  .skills h2.section-heading{margin-bottom:26px;}
+  .skill-legend{display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:center; margin:0 auto clamp(36px,6vh,64px); font-family:'JetBrains Mono',monospace; font-size:.72rem; color:rgba(10,14,15,0.72);}
+  .skill-legend i{display:inline-block; width:11px; height:11px; border-radius:50%; margin-right:8px; vertical-align:-1px; box-sizing:border-box;}
+  .skill-legend .lg-work{background:var(--ink);}
+  .skill-legend .lg-lab{background:rgba(47,209,190,0.35); border:1.5px solid #14907F;}
+  .skill-legend .lg-learn{border:1.5px dashed rgba(10,14,15,0.6);}
+  .skill-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .skill-chips span{font-family:'JetBrains Mono',monospace; font-size:.72rem; border-radius:999px; padding:5px 12px; border:1px solid rgba(10,14,15,0.35); color:var(--ink);}
+  .skill-chips span.k-work{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .skill-chips span.k-lab{background:rgba(47,209,190,0.18); border-color:#14907F; color:#0B5A4F;}
+  .skill-chips span.k-learn{border-style:dashed; color:rgba(10,14,15,0.68);}
+  .case-carry{margin-top:4px; padding-top:14px; border-top:1px solid var(--line); font-weight:300; line-height:1.6; color:var(--text); font-size:clamp(.92rem,1.5vw,1.02rem);}
+  .case-carry .mono{color:var(--teal); font-size:.74rem; letter-spacing:.06em; margin-right:6px;}
+  .case-panel .chips{margin-bottom:14px;}
+  .case-panel{min-height:230px;}
 </style>
 </head>
 <body>
@@ -426,11 +443,11 @@
   </div>
   <ul class="navlinks">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#security">Security</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#skills">Stack</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#mission">Mission</a></li>
+    <li><a href="#mission">Direction</a></li>
     <li><a href="#credentials">Credentials</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -439,26 +456,26 @@
 <!-- HERO -->
 <header class="hero">
   <canvas id="heroCanvas"></canvas>
-  <div class="hero-watermark" aria-hidden="true">SECURE</div>
+  <div class="hero-watermark" aria-hidden="true">CLOUD</div>
   <h1 class="hero-heading grad-text reveal" id="heroHeading">Hi, i'm souma</h1>
 
   <div class="hero-mid">
     <div>
-      <p class="hero-tag reveal" id="heroTag">I spot what looks wrong — odd logins, access gaps, noisy alerts — and trace it back to why. Now I'm taking that into the cloud.</p>
-      <p class="hero-rotator reveal" id="heroRotator"><span class="rot-label">focus →</span><span class="rot-word" id="rotWord">secure the cloud</span><span class="caret"></span></p>
+      <p class="hero-tag reveal" id="heroTag">IT operations and support professional moving into cloud and security. Nearly three years across security monitoring, SaaS product support, and investigations, now building on AWS.</p>
+      <p class="hero-rotator reveal" id="heroRotator"><span class="rot-label">path →</span><span class="rot-word" id="rotWord">cloud &amp; security</span><span class="caret"></span></p>
       <div class="identity-chip reveal" style="margin-top:22px;">
         <div class="avatar-badge magnet" id="heroAvatar">SK</div>
         <div class="id-text">
           <span class="id-name">Souma Kanti Mukherjee</span>
-          <span class="id-role"><span class="status-dot"></span> Open to cloud security &amp; support roles</span>
+          <span class="id-role"><span class="status-dot"></span> Open to cloud and security roles</span>
         </div>
       </div>
     </div>
     <div class="console reveal-x-r" id="heroConsole">
       <div class="console-head"><span class="status-dot"></span> Live status — resume snapshot</div>
       <div class="console-row"><span class="console-label">Currently</span><span class="console-val">Amazon · Investigation Specialist</span></div>
-      <div class="console-row"><span class="console-label">Aiming for</span><span class="console-val">Cloud Security · Cloud Support</span></div>
-      <div class="console-row"><span class="console-label">Hands-on security</span><span class="console-val">1+ yr · Splunk, investigations</span></div>
+      <div class="console-row"><span class="console-label">Background</span><span class="console-val">IT ops · Security · SaaS support</span></div>
+      <div class="console-row"><span class="console-label">Moving into</span><span class="console-val">Cloud &amp; Security roles</span></div>
       <div class="console-row"><span class="console-label">Open-source repos</span><span class="console-val">8 repos · 4★</span></div>
       <div class="console-row"><span class="console-label">Currently learning</span><span class="console-val mono">Terraform · Docker · K8s</span></div>
     </div>
@@ -499,7 +516,12 @@
 
 <!-- SKILLS -->
 <section class="skills" id="skills">
-  <h2 class="section-heading reveal">Skills</h2>
+  <h2 class="section-heading reveal">Tech stack</h2>
+  <div class="skill-legend reveal">
+    <span><i class="lg-work"></i>Used in my roles</span>
+    <span><i class="lg-lab"></i>Hands-on projects and labs</span>
+    <span><i class="lg-learn"></i>Learning now</span>
+  </div>
   <div class="skill-list" id="skillList"></div>
 </section>
 
@@ -528,39 +550,36 @@
   </a>
 </section>
 
-<!-- SECURITY -->
-<section class="security" id="security">
-  <h2 class="section-heading grad-text reveal">Security</h2>
-  <p class="sec-lead reveal">A year-plus on the defensive side taught me that most of security is noticing what doesn't look right early, and being able to prove why. Here's how I work.</p>
+<!-- JOURNEY -->
+<section class="security" id="journey">
+  <h2 class="section-heading grad-text reveal">Journey</h2>
+  <p class="sec-lead reveal">Nearly three years in IT operations. Each role added something I'll carry into cloud and security.</p>
+
+  <div class="case-board reveal">
+    <div class="case-head mono"><span class="status-dot"></span> From IT ops to cloud and security</div>
+    <div class="case-steps" id="caseSteps"></div>
+    <div class="case-panel" id="casePanel" aria-live="polite"></div>
+  </div>
 
   <div class="sec-domains">
     <div class="dom-card reveal">
-      <div class="dom-verb">01 · Detect</div>
-      <div class="dom-title">Watch the signal</div>
-      <p class="dom-desc">Security and system log monitoring in Splunk at Wipro: spotting anomalies, suspicious activity, and potential incidents before they grow.</p>
-      <div class="chips"><span>Splunk</span><span>SIEM</span><span>Log analysis</span></div>
-      <div class="dom-where">Wipro · IT Analyst</div>
+      <div class="dom-verb">Carries over · 01</div>
+      <div class="dom-title">Reading logs and signals</div>
+      <p class="dom-desc">Splunk log monitoring at Wipro and Datadog dashboards and logs at NielsenIQ: finding the anomaly, then the root cause.</p>
+      <div class="chips"><span>Splunk</span><span>Datadog</span><span>API log analysis</span></div>
     </div>
     <div class="dom-card reveal" style="transition-delay:.1s">
-      <div class="dom-verb">02 · Control</div>
-      <div class="dom-title">Lock down access</div>
-      <p class="dom-desc">Okta RBAC support at NielsenIQ (provisioning, group fixes, recovery) and least-privilege AWS IAM roles and policies in hands-on labs.</p>
-      <div class="chips"><span>Okta</span><span>RBAC</span><span>AWS IAM</span><span>Least privilege</span></div>
-      <div class="dom-where">NielsenIQ · AWS labs</div>
+      <div class="dom-verb">Carries over · 02</div>
+      <div class="dom-title">Access fundamentals</div>
+      <p class="dom-desc">Okta RBAC support day to day, plus least-privilege AWS IAM roles and policies built in hands-on projects.</p>
+      <div class="chips"><span>Okta</span><span>RBAC</span><span>AWS IAM</span></div>
     </div>
     <div class="dom-card reveal" style="transition-delay:.2s">
-      <div class="dom-verb">03 · Investigate</div>
-      <div class="dom-title">Prove what happened</div>
-      <p class="dom-desc">Playbook-driven investigations at Amazon: reviewing account and transaction records for anomalies and policy violations, with audit-ready evidence.</p>
-      <div class="chips"><span>Playbooks</span><span>RCA</span><span>Audit evidence</span><span>SLA</span></div>
-      <div class="dom-where">Amazon · Investigation Specialist</div>
+      <div class="dom-verb">Carries over · 03</div>
+      <div class="dom-title">Incident and investigation discipline</div>
+      <p class="dom-desc">Working to SLAs, following playbooks, documenting evidence for audit, and keeping stakeholders and developers updated.</p>
+      <div class="chips"><span>SLA</span><span>RCA</span><span>Playbooks</span><span>Incident mgmt</span></div>
     </div>
-  </div>
-
-  <div class="case-board reveal">
-    <div class="case-head mono"><span class="status-dot"></span> How I work a case</div>
-    <div class="case-steps" id="caseSteps"></div>
-    <div class="case-panel" id="casePanel" aria-live="polite"></div>
   </div>
 </section>
 
@@ -578,17 +597,17 @@
 
 <!-- MISSION -->
 <section class="mission" id="mission">
-  <h2 class="section-heading grad-text reveal">Where I'm headed</h2>
-  <p class="sec-lead reveal">Cloud security is the goal, not a detour. The investigations, the access work, and the AWS labs on this page are all groundwork for it.</p>
+  <h2 class="section-heading grad-text reveal">Direction</h2>
+  <p class="sec-lead reveal">Operations is where I learned how systems break and how access goes wrong. I want to take that into cloud and security roles, and grow there.</p>
   <div class="road">
     <div class="road-col reveal">
       <span class="road-pill done">Done</span>
-      <h3>Foundations</h3>
+      <h3>IT operations foundation</h3>
       <ul>
-        <li>Splunk security monitoring (Wipro)</li>
-        <li>Okta RBAC and access support (NielsenIQ)</li>
-        <li>Playbook-driven investigations and RCA (Amazon)</li>
-        <li>AWS labs: Datadog on EC2, least-privilege IAM, Python and PowerShell checks</li>
+        <li>Security and system services at Wipro</li>
+        <li>SaaS product support at NielsenIQ (Okta, Datadog)</li>
+        <li>Investigations at Amazon</li>
+        <li>AWS projects: Datadog on EC2, least-privilege IAM, Python and PowerShell checks</li>
       </ul>
     </div>
     <div class="road-col reveal" style="transition-delay:.1s">
@@ -602,20 +621,20 @@
     </div>
     <div class="road-col reveal" style="transition-delay:.2s">
       <span class="road-pill next">Next</span>
-      <h3>Cloud security</h3>
+      <h3>Cloud and security roles</h3>
       <ul>
-        <li>IAM hardening and least privilege in the cloud</li>
-        <li>Cloud audit and logging (CloudTrail)</li>
-        <li>Infrastructure as code for repeatable, secure setups</li>
+        <li>Cloud support and cloud operations</li>
+        <li>IAM support</li>
+        <li>Growing toward cloud security and infrastructure automation</li>
       </ul>
     </div>
   </div>
   <div class="target-row reveal">
-    <span class="mono target-label">Targeting →</span>
-    <span class="target-chip">Cloud Security Engineer</span>
-    <span class="target-chip">Cloud Support Engineer</span>
+    <span class="mono target-label">Open to →</span>
+    <span class="target-chip">Cloud Support</span>
     <span class="target-chip">Cloud Operations</span>
     <span class="target-chip">IAM Support</span>
+    <span class="target-chip">Cloud Security (exploring)</span>
   </div>
 </section>
 
@@ -641,7 +660,7 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <h2 class="section-heading grad-text reveal">Let&apos;s talk</h2>
-  <p class="contact-sub reveal">Open to cloud security, cloud support, and cloud operations roles — remote or hybrid.</p>
+  <p class="contact-sub reveal">Open to cloud support, cloud operations, IAM, and cloud security roles — remote or hybrid.</p>
   <div class="contact-links reveal">
     <a class="btn-contact" href="mailto:soumamukherjee27@gmail.com">soumamukherjee27@gmail.com</a>
     <a class="btn-ghost" href="tel:+919547223504">+91 95472 23504</a>
@@ -659,30 +678,30 @@
 (function(){
   // ---- data ----
   var skills = [
-    {code:'SEC', name:'Security Operations & Monitoring', desc:'Splunk security-log monitoring at Wipro to spot anomalies and potential incidents. Playbook-driven investigations, audit-ready evidence, and root cause analysis at Amazon.'},
-    {code:'IAM', name:'Identity & Access Management', desc:'Okta RBAC support at NielsenIQ: account activation, profile and group fixes, access provisioning and recovery. AWS IAM roles and least-privilege policies built in hands-on projects.'},
-    {code:'CLD', name:'Cloud Infrastructure', desc:'AWS EC2, S3, IAM, VPC, CloudWatch, and CloudTrail through hands-on projects, with Terraform, Docker, and Kubernetes in progress through a DevOps program.'},
-    {code:'AUTO', name:'Automation & Scripting', desc:'Python, PowerShell, and Bash scripts that automate recurring diagnostic and monitoring checks.'},
-    {code:'OPS', name:'Incident & Ops Support', desc:'L1 and L2 support, SLA-bound troubleshooting, and coordination with incident management and developers on rollouts and fix patches. ServiceNow and Jira.'}
+    {code:'MON', name:'Monitoring & Logging', desc:'Splunk log monitoring at Wipro. Datadog dashboards and logs for API troubleshooting at NielsenIQ. CloudWatch in AWS projects.', tools:[{n:'Splunk',k:'work'},{n:'Datadog',k:'work'},{n:'API log analysis',k:'work'},{n:'CloudWatch',k:'lab'}]},
+    {code:'IAM', name:'Identity & Access', desc:'Okta RBAC support at NielsenIQ: account activation, profile and group fixes, access provisioning and recovery. Least-privilege AWS IAM roles and policies in hands-on projects.', tools:[{n:'Okta',k:'work'},{n:'RBAC',k:'work'},{n:'Group-based access',k:'work'},{n:'AWS IAM',k:'lab'}]},
+    {code:'CLD', name:'Cloud Infrastructure', desc:'AWS through hands-on projects, with infrastructure as code and containers in progress through a DevOps program.', tools:[{n:'AWS EC2',k:'lab'},{n:'S3',k:'lab'},{n:'VPC',k:'lab'},{n:'CloudTrail',k:'lab'},{n:'Terraform',k:'learn'},{n:'Docker',k:'learn'},{n:'Kubernetes',k:'learn'},{n:'Azure',k:'learn'}]},
+    {code:'AUTO', name:'Scripting & Automation', desc:'PowerShell and CMD scripts at Wipro to automate repetitive diagnostics. Python and Bash for recurring monitoring checks in projects.', tools:[{n:'PowerShell',k:'work'},{n:'Python',k:'lab'},{n:'Bash',k:'lab'},{n:'Git',k:'learn'}]},
+    {code:'OPS', name:'Incident & ITSM', desc:'L1 and L2 support, SLA-bound troubleshooting, and coordination with incident management and developers on rollouts and fix patches.', tools:[{n:'ServiceNow',k:'work'},{n:'Jira',k:'work'},{n:'Incident management',k:'work'},{n:'RCA',k:'work'},{n:'SLA management',k:'work'}]},
+    {code:'SYS', name:'Systems & Networking', desc:'Windows and macOS troubleshooting at Wipro, with Linux through labs and course work, on a base of core networking.', tools:[{n:'Windows',k:'work'},{n:'macOS',k:'work'},{n:'Linux',k:'lab'},{n:'TCP/IP',k:'work'},{n:'DNS',k:'work'},{n:'DHCP',k:'work'}]}
   ];
 
   var experience = [
-    {date:'Dec 2025 — Present', current:true, role:'Investigation Specialist', org:'Amazon', tags:['Investigations','Audit evidence','RCA'], bullets:[
+    {date:'Dec 2025 — Present', current:true, role:'Investigation Specialist', org:'Amazon', domain:'Investigations', tags:['Playbooks','Audit evidence','RCA'], bullets:[
       'Investigate and resolve cases against defined playbooks, meeting SLA and quality targets.',
       'Review account and transaction records to identify anomalies and policy violations, documenting evidence for audit.',
       'Perform root cause analysis on flagged cases and share recurring patterns with cross-functional teams to improve detection playbooks.'
     ]},
-    {date:'Oct 2023 — May 2024', role:'Technology Consultant', org:'NielsenIQ', tags:['Okta RBAC','Datadog','L1 / L2'], bullets:[
+    {date:'Oct 2023 — May 2024', role:'Technology Consultant', org:'NielsenIQ', domain:'SaaS product support', tags:['Okta RBAC','Datadog','L1 / L2'], bullets:[
       'L1 (identity and access): resolved Okta RBAC incidents, including account activation failures, profile and group corrections, access provisioning, and account recovery.',
       'L2 (API and logs): troubleshot API issues using Datadog dashboards and logs, isolating root causes and coordinating fixes with developers.',
       'Worked with incident management, stakeholders, and developers to communicate incident status, rollouts, and fix patches.',
       'Closed incidents within SLA with documented findings and clear handoffs.'
     ]},
-    {date:'Sep 2022 — Oct 2023', role:'IT Analyst', org:'Wipro', tags:['Splunk','Security monitoring','PowerShell'], bullets:[
+    {date:'Sep 2022 — Oct 2023', role:'IT Analyst', org:'Wipro', domain:'Security & system services', tags:['Splunk','Windows / macOS','PowerShell'], bullets:[
       'Monitored security and system logs in Splunk to identify anomalies, suspicious activity, and potential security incidents.',
-      'Triaged P1–P3 security alerts and investigated phishing, malware, and suspicious-login activity; supported incident response and RCA.',
       'Troubleshot complex Windows and macOS issues using Command Prompt, PowerShell, and shell tools.',
-      'Automated repetitive diagnostic and troubleshooting tasks with PowerShell and CMD scripts to speed up resolution.'
+      'Automated repetitive diagnostic and troubleshooting tasks with PowerShell and CMD scripts, improving resolution efficiency.'
     ]}
   ];
 
@@ -693,8 +712,8 @@
     {tag:'GitHub · Open Source', title:'More on GitHub', desc:'8 repositories and counting: ongoing experiments, scripts, and works in progress, live in the open at github.com/soumamukherjee27.', stack:['github.com/soumamukherjee27'], link:'https://github.com/soumamukherjee27', linkLabel:'Visit profile ↗'}
   ];
 
-  var marqueeTools = ['Splunk','SIEM','AWS IAM','Okta','RBAC','CloudTrail','Datadog','CloudWatch','AWS EC2','Linux'];
-  var marqueeTools2 = ['Alert triage','RCA','Audit evidence','Least privilege','Python','PowerShell','Bash','Terraform · learning','Docker · learning','Kubernetes · learning'];
+  var marqueeTools = ['Splunk','Datadog','Okta','RBAC','ServiceNow','Jira','PowerShell','Windows','macOS','Incident management'];
+  var marqueeTools2 = ['AWS EC2','AWS IAM','S3','VPC','CloudWatch','CloudTrail','Python','Bash','Terraform · learning','Docker · learning','Kubernetes · learning'];
 
   var education = [
     {degree:'B.Tech, Electrical Engineering', school:'Guru Nanak Institute of Technology, Kolkata', date:'Aug 2019 — Jul 2022'},
@@ -739,7 +758,7 @@
   skills.forEach(function(s){
     var row = document.createElement('div');
     row.className = 'skill-item reveal';
-    row.innerHTML = '<div class="skill-code">'+s.code+'</div><div><div class="skill-name">'+s.name+'</div><div class="skill-desc">'+s.desc+'</div></div>';
+    row.innerHTML = '<div class="skill-code">'+s.code+'</div><div><div class="skill-name">'+s.name+'</div><div class="skill-desc">'+s.desc+'</div><div class="skill-chips">'+s.tools.map(function(t){return '<span class="k-'+t.k+'">'+t.n+'</span>';}).join('')+'</div></div>';
     skillList.appendChild(row);
   });
 
@@ -751,7 +770,7 @@
     var lis = e.bullets.map(function(b){return '<li>'+b+'</li>';}).join('');
     var badge = e.current ? ' <span class="exp-current">Current</span>' : '';
     var tagHtml = e.tags ? '<div class="exp-tags">'+e.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>' : '';
-    item.innerHTML = '<div class="exp-dot"></div><div class="exp-date">'+e.date+badge+'</div><div class="exp-role">'+e.role+'</div><div class="exp-org">'+e.org+'</div>'+tagHtml+'<ul class="exp-bullets">'+lis+'</ul>';
+    item.innerHTML = '<div class="exp-dot"></div><div class="exp-date">'+e.date+badge+'</div><div class="exp-role">'+e.role+'</div><div class="exp-org">'+e.org+(e.domain ? ' · '+e.domain : '')+'</div>'+tagHtml+'<ul class="exp-bullets">'+lis+'</ul>';
     expList.appendChild(item);
   });
 
@@ -768,7 +787,7 @@
   });
 
   // ---- animated about paragraph (word by word) ----
-  var aboutSentence = "Nearly three years in IT operations, with a good chunk of it on the security side: watching Splunk for anomalies at Wipro, working investigations against playbooks at Amazon, and fixing Okta access issues at NielsenIQ. What pulled me in is how much of security is noticing what does not look right, early, and then proving why. Now I am taking that into the cloud, with hands-on AWS projects behind me and Terraform, Docker, and Kubernetes in progress through an Intellipaat DevOps program, in association with IIT Roorkee. The goal: a cloud security role.";
+  var aboutSentence = "Nearly three years in IT operations. I started in security monitoring and system support at Wipro, moved into SaaS product support at NielsenIQ (Okta access issues at L1, API troubleshooting through Datadog at L2), and now work investigations at Amazon. After NielsenIQ I upskilled in AWS, Linux, cloud security, and SRE practices, built hands-on AWS projects, and started an Intellipaat DevOps program with IIT Roorkee. Now I want to take that operations experience into cloud and security roles, and grow there.";
   var aboutEl = document.getElementById('about-text');
   var words = aboutSentence.split(' ');
   aboutEl.innerHTML = words.map(function(w){return '<span style="opacity:0.2">'+w+' </span>';}).join('');
@@ -963,7 +982,7 @@
     };
     var STACK = [
       {name:'Identity & Access', tools:'Okta · AWS IAM · RBAC', bg:'#C98A2E', panel:'#E3A94E', icon:'key'},
-      {name:'Security & Monitoring', tools:'Splunk · Datadog · CloudTrail', bg:'#1F8C7E', panel:'#2FAE9C', icon:'shield'},
+      {name:'Monitoring & Logging', tools:'Splunk · Datadog · CloudWatch', bg:'#1F8C7E', panel:'#2FAE9C', icon:'shield'},
       {name:'Cloud Infrastructure', tools:'AWS · Terraform · Docker · K8s', bg:'#3E6FA8', panel:'#5488C4', icon:'server'},
       {name:'Automation', tools:'Python · Bash · PowerShell', bg:'#6E4F9E', panel:'#8C6DBB', icon:'terminal'}
     ];
@@ -1101,7 +1120,7 @@
   (function(){
     var el = document.getElementById('rotWord');
     if(!el) return;
-    var phrases = ['detect threats','investigate incidents','control access','secure the cloud'];
+    var phrases = ['security & system services','saas product support','case investigations','cloud & security'];
     if(reduceMotion){ el.textContent = phrases[phrases.length-1]; return; }
     var idx = 0, timer;
     function scrambleTo(text){
@@ -1125,11 +1144,10 @@
   // ---- security case walkthrough ----
   (function(){
     var steps = [
-      {label:'Detect', title:'Detect', text:'At Wipro I watched security and system logs in Splunk for anomalies, suspicious activity, and potential security incidents: the first signal that something is off.', tools:['Splunk','SIEM','Event logs'], role:'Wipro · IT Analyst'},
-      {label:'Triage', title:'Triage', text:'Not every alert is an incident. Work the queue by severity (P1–P3) and separate real phishing, malware, and suspicious-login activity from noise.', tools:['P1–P3 alerts','Phishing','Malware','Suspicious logins'], role:'Wipro · IT Analyst'},
-      {label:'Investigate', title:'Investigate', text:'At Amazon I work cases against defined playbooks, reviewing account and transaction records for anomalies and policy violations, within SLA and quality targets.', tools:['Playbooks','Account records','SLA'], role:'Amazon · Investigation Specialist'},
-      {label:'Root cause', title:'Find the root cause', text:'Trace it back to why. Root cause analysis on flagged cases at Amazon, and Datadog dashboards and logs at NielsenIQ to isolate API issues and get fixes in with developers.', tools:['RCA','Datadog','Logs'], role:'Amazon · NielsenIQ'},
-      {label:'Document', title:'Document and improve', text:'Write the evidence up for audit, share recurring patterns with cross-functional teams, and feed them back into detection playbooks so the next one is caught faster.', tools:['Audit evidence','Playbooks','Cross-team'], role:'Amazon · Investigation Specialist'}
+      {label:'Wipro', title:'Security and system services · Wipro, IT Analyst', text:'Where it started. Monitored security and system logs in Splunk for anomalies and suspicious activity, troubleshot complex Windows and macOS issues, and automated repetitive diagnostics with PowerShell and CMD scripts.', tools:['Splunk','Windows','macOS','PowerShell'], carryLabel:'carries into cloud and security →', carry:'Log reading, alert awareness, and the habit of scripting repetitive work.', role:'Sep 2022 — Oct 2023'},
+      {label:'NielsenIQ', title:'SaaS product support · NielsenIQ, Technology Consultant', text:'Supported users and applications at two levels. L1: Okta RBAC incidents, from account activation to group fixes, provisioning, and recovery. L2: traced API problems through Datadog dashboards and logs and worked with developers on fixes, keeping stakeholders updated through incident management.', tools:['Okta','RBAC','Datadog','L1 / L2','SLA'], carryLabel:'carries into cloud and security →', carry:'Identity and access fundamentals, observability, and clear incident communication.', role:'Oct 2023 — May 2024'},
+      {label:'Amazon', title:'Investigations · Amazon, Investigation Specialist', text:'Investigate and resolve cases against defined playbooks, with SLA and quality as the targets. Review account and transaction records for anomalies and policy violations, document evidence for audit, and run root cause analysis to improve detection playbooks.', tools:['Playbooks','RCA','Audit evidence','SLA'], carryLabel:'carries into cloud and security →', carry:'Investigative rigor, clear documentation, and working to SLA.', role:'Dec 2025 — Present'},
+      {label:'Next', title:'Cloud and security · what I am moving into', text:'After NielsenIQ I upskilled in AWS, Linux, cloud security, and SRE practices. Hands-on AWS projects (Datadog on EC2, least-privilege IAM, Python and PowerShell checks) are done, and an Intellipaat DevOps program with Terraform, Docker, and Kubernetes is in progress.', tools:['AWS','Terraform','Docker','Kubernetes'], carryLabel:'the goal →', carry:'Cloud support, cloud operations, and IAM roles, growing toward cloud security.', role:'In progress'}
     ];
     var stepsEl = document.getElementById('caseSteps');
     var panel = document.getElementById('casePanel');
@@ -1151,7 +1169,7 @@
       current = i;
       btns.forEach(function(b, j){ b.classList.toggle('active', j === i); b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
       var s = steps[i];
-      panel.innerHTML = '<div class="case-in"><h3>'+s.title+'</h3><p>'+s.text+'</p><div class="chips">'+s.tools.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div><div class="case-role">'+s.role+'</div></div>';
+      panel.innerHTML = '<div class="case-in"><h3>'+s.title+'</h3><p>'+s.text+'</p><div class="chips">'+s.tools.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div><div class="case-carry"><span class="mono">'+s.carryLabel+'</span> '+s.carry+'</div><div class="case-role">'+s.role+'</div></div>';
     }
     function stopAuto(){ if(auto){ clearInterval(auto); auto = null; } }
     show(0);
